@@ -33,7 +33,9 @@ Add the purchase items using the add button
 Monitor your purchase and price on the Card 
 
 ### SCREENSHOT
-![image](https://github.com/dr-akoto/rn-Assignment6-11311652/assets/149382286/7e366a44-1e70-49e9-8960-b84b7e64b72b)
+![image](https://github.com/dr-akoto/rn-Assignment6-11311652/assets/149382286/7e366a44-1e70-49e9-8960-b84b7e64b72b
+![image](https://github.com/dr-akoto/rn-Assignment6-11311652/assets/149382286/dcb1ac0c-9929-4ffb-a45d-2435f3f3fb7f)
+
 
 ### Features
 Explore the key features of Models_App:
