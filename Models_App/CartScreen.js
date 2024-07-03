@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, FlatList, Button, Alert } from "react-native";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
+ import AsyncStorage from "@react-native-async-storage/async-storage";
 import CartItem from "./CartItem";
 
 export default function CartScreen() {
@@ -65,3 +65,4 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
+
