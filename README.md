@@ -25,12 +25,15 @@ npm start
 Usage
 The Models_App provides a user-friendly interface for managing purchases efficiently.
 
-Here are some usage instructions:
+###Here are some usage instructions:
 
 Open the mobile app
 Select the Item of your choice 
 Add the purchase items using the add button
 Monitor your purchase and price on the Card 
+
+### SCREENSHOT
+![image](https://github.com/dr-akoto/rn-Assignment6-11311652/assets/149382286/7e366a44-1e70-49e9-8960-b84b7e64b72b)
 
 ### Features
 Explore the key features of Models_App:
