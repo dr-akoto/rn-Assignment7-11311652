@@ -1,68 +1,75 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, FlatList, Button, Alert } from "react-native";
- import AsyncStorage from "@react-native-async-storage/async-storage";
-import CartItem from "./CartItem";
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+import { getCart, removeFromCart } from './cartStorage';
 
-export default function CartScreen() {
-  const [cart, setCart] = useState([]);
+const CartScreen = () => {
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    const loadCart = async () => {
-      try {
-        const savedCart = await AsyncStorage.getItem("cart");
-        if (savedCart !== null) {
-          setCart(JSON.parse(savedCart));
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    loadCart();
+    loadCartItems();
   }, []);
 
-  const removeFromCart = async (id) => {
-    try {
-      const updatedCart = cart.filter((item) => item.id !== id);
-      setCart(updatedCart);
-      await AsyncStorage.setItem("cart", JSON.stringify(updatedCart));
-    } catch (error) {
-      console.error(error);
-      Alert.alert("Error", "Failed to remove from cart");
-    }
+  const loadCartItems = async () => {
+    const items = await getCart();
+    setCartItems(items);
   };
+
+  const handleRemoveFromCart = async (productId) => {
+    await removeFromCart(productId);
+    loadCartItems();
+  };
+
+  const renderCartItem = ({ item }) => (
+    <View style={styles.cartItem}>
+      <Text style={styles.itemTitle}>{item.title}</Text>
+      <Text style={styles.itemPrice}>${item.price}</Text>
+      <TouchableOpacity
+        style={styles.removeButton}
+        onPress={() => handleRemoveFromCart(item.id)}
+      >
+        <Text style={styles.removeButtonText}>Remove</Text>
+      </TouchableOpacity>
+    </View>
+  );
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Checkout</Text>
       <FlatList
-        data={cart}
-        renderItem={({ item }) => (
-          <CartItem product={item} removeFromCart={removeFromCart} />
-        )}
-        keyExtractor={(item) => item.id}
+        data={cartItems}
+        renderItem={renderCartItem}
+        keyExtractor={(item) => item.id.toString()}
       />
-      <Text style={styles.total}>
-        Est. Total: {cart.reduce((sum,item) => sum + item.price,0)}
-      </Text>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    padding: 20,
+    padding: 10,
   },
-  header: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 20,
+  cartItem: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc',
   },
-  total: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginTop: 20,
+  itemTitle: {
+    flex: 1,
+  },
+  itemPrice: {
+    marginHorizontal: 10,
+  },
+  removeButton: {
+    padding: 5,
+    backgroundColor: '#dc3545',
+    borderRadius: 5,
+  },
+  removeButtonText: {
+    color: '#fff',
   },
 });
 
+export default CartScreen;
