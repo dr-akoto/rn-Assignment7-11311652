@@ -42,7 +42,7 @@ export default function CartScreen() {
         keyExtractor={(item) => item.id}
       />
       <Text style={styles.total}>
-        Est. Total: ${cart.reduce((sum, item) => sum + item.price, 0)}
+        Est. Total: {cart.reduce((sum,item) => sum + item.price,0)}
       </Text>
     </View>
   );

@@ -1,185 +1,252 @@
-// import React, { useState, useEffect } from "react";
-// import {
-//   View,
-//   Text,
-//   StyleSheet,
-//   FlatList,
-//   Button,
-//   Alert,
-//   ScrollView,
-// } from "react-native";
-// import AsyncStorage from "@react-native-async-storage/async-storage";
-// import ProductItem from "./ProductItem";
 
-// const products = [
-//   {
-//     id: "1",
-//     name: "Office Wear",
-//     description: "Reversible Angora Cardigan",
-//     price: 120,
-//     image: require("./Images/dress1.png"),
-//   },
-//   {
-//     id: "2",
-//     name: "Black",
-//     description: "Reversible Angora Cardigan",
-//     price: 120,
-//     image: require("./Images/dress2.png"),
-//   },
-//   {
-//     id: "3",
-//     name: "Church Wear",
-//     description: "Reversible Angora Cardigan",
-//     price: 120,
-//     image: require("./Images/dress3.png"),
-//   },
-//   {
-//     id: "4",
-//     name: "Lamerei",
-//     description: "Reversible Angora Cardigan",
-//     price: 120,
-//     image: require("./Images/dress4.png"),
-//   },
-//   {
-//     id: "5",
-//     name: "Black",
-//     description: "Reversible Angora Cardigan",
-//     price: 120,
-//     image: require("./Images/dress2.png"),
-//   },
-//   {
-//     id: "6",
-//     name: "Church Wear",
-//     description: "Reversible Angora Cardigan",
-//     price: 120,
-//     image: require("./Images/dress3.png"),
-//   },
-//   {
-//     id: "7",
-//     name: "Lamerei",
-//     description: "Reversible Angora Cardigan",
-//     price: 120,
-//     image: require("./Images/dress4.png"),
-//   },
-//   {
-//     id: "8",
-//     name: "Church Wear",
-//     description: "Reversible Angora Cardigan",
-//     price: 120,
-//     image: require("./Images/dress3.png"),
-//   },
-// ];
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text, Image, TouchableOpacity, ScrollView, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// export default function HomeScreen({ navigation }) {
-//   const [cart, setCart] = useState([]);
+const HomeScreen = ({ navigation }) => {
+  const [cart, setCart] = useState([]);
 
-//   useEffect(() => {
-//     const loadCart = async () => {
-//       try {
-//         const savedCart = await AsyncStorage.getItem("cart");
-//         if (savedCart !== null) {
-//           setCart(JSON.parse(savedCart));
-//         }
-//       } catch (error) {
-//         console.error(error);
-//       }
-//     };
-//     loadCart();
-//   }, []);
-
-//   const addToCart = async (product) => {
-//     try {
-//       const updatedCart = [...cart, product];
-//       setCart(updatedCart);
-//       await AsyncStorage.setItem("cart", JSON.stringify(updatedCart));
-//       Alert.alert("Success", `${product.name} added to cart`);
-//     } catch (error) {
-//       console.error(error);
-//       Alert.alert("Error", "Failed to add to cart");
-//     }
-//   };
-
-//   return (
-//     <ScrollView>
-//       {" "}
-//       <View style={styles.container}>
-//         <Text style={styles.header}>OUR STORY</Text>
-
-//         <FlatList
-//           data={products}
-//           renderItem={({ item }) => (
-//             <ProductItem product={item} addToCart={addToCart} />
-//           )}
-//           keyExtractor={(item) => item.id}
-//           numColumns={2}
-//           columnWrapperStyle={styles.row}
-//         />
-//         <Button
-//           title="Go to Cart"
-//           onPress={() => navigation.navigate("Cart")}
-//         />
-//       </View>
-//     </ScrollView>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: "#fff",
-//     padding: 20,
-//   },
-//   header: {
-//     fontSize: 24,
-//     fontWeight: "bold",
-//     marginBottom: 20,
-//   },
-//   row: {
-//     justifyContent: "space-between",
-//   },
-// });
+  const items = [
+    {id: 1,
+      image: require('./Images/dress1.png'),
+      title: 'Office Wear',
+      description: 'reversible angora cardigan',
+      price: '$120',
+    },
+    {id:2,
+      image: require('./Images/dress2.png'),
+      title: 'Black',
+      description: 'reversible angora cardigan',
+      price: '$120',
+    },
+    {id:3,
+      image: require('./Images/dress3.png'),
+      title: 'Church Wear',
+      description: 'reversible angora cardigan',
+      price: '$120',
+    },
+    {id:4,
+      image: require('./Images/dress4.png'),
+      title: 'Lamerei',
+      description: 'reversible angora cardigan',
+      price: '$120',
+    },
+    {id:5,
+      image: require('./Images/dress5.png'),
+      title: 'Church Wear',
+      description: 'reversible angora cardigan',
+      price: '$120',
+    },
+    {id:6,
+      image: require('./Images/dress6.png'),
+      title: 'Lamerei',
+      description: 'reversible angora cardigan',
+      price: '$120',
+    },
+    {id:7,
+      image: require('./Images/dress7.png'),
+      title: 'Church Wear',
+      description: 'reversible angora cardigan',
+      price: '$120',
+    },
+    {id:8,
+      image: require('./Images/dress1.png'),
+      title: 'Lamerei',
+      description: 'reversible angora cardigan',
+      price: '$120',
+    },
+  ];
 
 
-import React, { useState, useEffect } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Button,
-  Alert,
-  ScrollView,
-  Image
-} from "react-native";
+  useEffect(() => {
+    loadCart();
+  }, []);
 
-export default function HomeScreen() {
+  const loadCart = async () => {
+    try {
+      const savedCart = await AsyncStorage.getItem('cart');
+      if (savedCart !== null) {
+        setCart(JSON.parse(savedCart));
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const addToCart = async (item) => {
+    try {
+      const itemIndex = cart.findIndex(cartItem => cartItem.id === item.id);
+      let updatedCart;
+  
+      if (itemIndex !== -1) {
+        
+        updatedCart = cart.map((cartItem, index) => 
+          index === itemIndex 
+            ? { ...cartItem, quantity: (cartItem.quantity || 1) + 1 }
+            : cartItem
+        );
+      } else {
+        
+        updatedCart = [...cart, { ...item, quantity: 1 }];
+      }
+  
+      setCart(updatedCart);
+      await AsyncStorage.setItem('cart', JSON.stringify(updatedCart));
+      Alert.alert('Success', 'Item added to cart');
+    } catch (error) {
+      console.error(error);
+      Alert.alert('Error', 'Failed to add to cart');
+    }
+  };
+  // const addToCart = async (item) => {
+  //   try {
+  //     const updatedCart = [...cart, item];
+  //     setCart(updatedCart);
+  //     await AsyncStorage.setItem('cart', JSON.stringify(updatedCart));
+  //     Alert.alert('Success', 'Item added to cart');
+  //   } catch (error) {
+  //     console.error(error);
+  //     Alert.alert('Error', 'Failed to add to cart');
+  //   }
+  // };
+
   return (
-    <View style={styles.HomeScreen}>
-      <View>
-      <Image
-  source={require('./Images/dress1.png')}
-  style={{ width: 200, height: 200 }}
-/> <Image />
-        <Text>Open</Text>
-      <Text>Fashion</Text>
+    <ScrollView style={styles.scrollContainer}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <TouchableOpacity style={styles.menuIcon}>
+            <Image source={require('./Images/Menu.png')}/>
+          </TouchableOpacity>
+          <View style={styles.title}>
+            <Image source={require('./Images/Logo.png')}/>
+          </View>
+          <View style={styles.headerIcons}>
+            <TouchableOpacity style={styles.icon}>
+              <Image source={require('./Images/Search.png')}/>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.icon} onPress={() => navigation.navigate('Cart')}>
+              <Image source={require('./Images/shoppingBag.png')}/>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <View style={styles.content}>
+          <View style={styles.gridContainer}>
+            {items.map((item) => (
+              <View key={item.id} style={styles.itemContainer}>
+                <Image source={item.image} style={styles.itemImage} />
+                <View style={styles.itemDetails}>
+                  <Text style={styles.itemTitle}>{item.title}</Text>
+                  <Text style={styles.itemDescription}>{item.description}</Text>
+                  <Text style={styles.itemPrice}>{item.price}</Text>
+                </View>
+                <TouchableOpacity style={styles.plusIcon} onPress={() => addToCart(item)} activeOpacity={0.5}>
+                  <Image source={require('./Images/add_circle.png')}/>
+                </TouchableOpacity>
+              </View>
+            ))}
+          </View>
+        </View>
       </View>
-     
-      <StatusBar style="auto" />
-    </View>
+    </ScrollView>
   );
-}
+};
 const styles = StyleSheet.create({
-  HomeScreen: {
+  container: {
     flex: 1,
-    backgroundColor: "#fff",
-    padding: 20,
   },
   header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    backgroundColor: '#fff',
+  },
+  menuIcon: {
+    padding: 10,
+    width:50
+  },
+  menuText: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: 'bold',
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  headerIcons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  icon: {
+    padding: 10,
+    width:20,
+    marginRight:15
+  },
+  iconText: {
+    fontSize: 20,
+  },
+  title:{
+    display:'flex',
+    flexDirection:'column'
+  },
+  content: {
+    padding: 20,
+  },
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
     marginBottom: 20,
   },
-  row: {
-    justifyContent: "space-between",
+  gridContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
+  itemContainer: {
+    width: '48%',
+    marginBottom: 20,
+  },
+  itemImage: {
+    width: '100%',
+    height: 200,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    resizeMode: 'cover',
+  },
+  itemDetails: {
+    padding: 10,
+  },
+  itemTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginBottom: 5,
+  },
+  itemDescription: {
+    fontSize: 14,
+    marginBottom: 5,
+  },
+  itemPrice: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  plusIcon: {
+    position: 'absolute',
+    top: 140,
+    right: 20,
+    padding: 5,
+    borderRadius: 50,
+  },
+  plusText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+  scrollContainer:{
+    padding:20,
+  }
 });
+
+
+
+export default HomeScreen;
+

@@ -8,7 +8,7 @@ export default function CartItem({ product, removeFromCart }) {
       <View style={styles.infoContainer}>
         <Text style={styles.name}>{product.name}</Text>
         <Text style={styles.description}>{product.description}</Text>
-        <Text style={styles.price}>${product.price}</Text>
+        <Text style={styles.price}>{product.price}</Text>
       </View>
       <TouchableOpacity
         style={styles.button}
