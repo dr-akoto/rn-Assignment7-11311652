@@ -9,10 +9,11 @@ They are able to delete items whenever they wish to
 Total price of goods are displayed to the user on the add to cart page
 
 ### User Manual
-To add to cart, press on the add button on the image
-To view the details of the image, click on it
-To remove an item from cart, click the delete button near the image
-User can remove an item at the remove cart page
+1. To add to cart, press on the add button on the image
+2. To view the details of the image, click on it
+3. To remove an item from cart, click the delete button near the image
+4. User can remove an item at the remove cart page
+
 ### API for this app is chosen from the fakestoreapi 
 
 ## Table of Contents
