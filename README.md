@@ -3,10 +3,16 @@
 # Project Title: Models_App
 The models_App is an e-commerce mobile application to help users  purchase of cloth items and other aceessories. The App stores their input using asyncStotage from react.
 
-### Users are able to add to cart what items they choose to buy
-### They are able to delete items whenever they wish to
-### Total price of goods are displayed to the user on the add to cart page
+### User abilities
+Users are able to add to cart what items they choose to buy
+They are able to delete items whenever they wish to
+Total price of goods are displayed to the user on the add to cart page
 
+### User Manual
+To add to cart, press on the add button on the image
+To view the details of the image, click on it
+To remove an item from cart, click the delete button near the image
+User can remove an item at the remove cart page
 ### API for this app is chosen from the fakestoreapi 
 
 ## Table of Contents
