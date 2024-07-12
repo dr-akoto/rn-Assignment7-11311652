@@ -16,7 +16,7 @@ Contributing
 To get started with Models_App follow these steps:
 
 Clone the repository:
-git clone https://github.com/dr-akoto/Assignment6-113111652.git
+git clone https://github.com/dr-akoto/Assignment7-113111652.git
 Install dependencies:
 npm install
 Configure the necessary environment variables.
@@ -33,9 +33,7 @@ Add the purchase items using the add button
 Monitor your purchase and price on the Card 
 
 ### SCREENSHOT
-![image](https://github.com/dr-akoto/rn-Assignment6-11311652/assets/149382286/7e366a44-1e70-49e9-8960-b84b7e64b72b
-![image](https://github.com/dr-akoto/rn-Assignment6-11311652/assets/149382286/dcb1ac0c-9929-4ffb-a45d-2435f3f3fb7f)
-
+Models_App/home screen shot.png
 
 ### Features
 Explore the key features of Models_App:
