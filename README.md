@@ -1,4 +1,4 @@
-# rn-Assignment6-11311652 
+# rn-Assignment7-11311652 
 
 # Project Title: Models_App
 The models_App is an e-commerce mobile application to help users add to card their purchases of cloth items. The App stores their input using asyncStotage from react
