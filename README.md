@@ -1,7 +1,13 @@
 # rn-Assignment7-11311652 
 
 # Project Title: Models_App
-The models_App is an e-commerce mobile application to help users add to card their purchases of cloth items. The App stores their input using asyncStotage from react
+The models_App is an e-commerce mobile application to help users  purchase of cloth items and other aceessories. The App stores their input using asyncStotage from react.
+
+### Users are able to add to cart what items they choose to buy
+### They are able to delete items whenever they wish to
+### Total price of goods are displayed to the user on the add to cart page
+
+### API for this app is chosen from the fakestoreapi 
 
 ## Table of Contents
 Installation
@@ -16,7 +22,7 @@ Contributing
 To get started with Models_App follow these steps:
 
 Clone the repository:
-git clone https://github.com/dr-akoto/Assignment7-113111652.git
+git clone https://github.com/dr-akoto/rn-Assignment7-11311652.git
 Install dependencies:
 npm install
 Configure the necessary environment variables.
